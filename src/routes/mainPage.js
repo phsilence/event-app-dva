@@ -2,7 +2,7 @@ import {connect} from 'dva'
 import React from 'react';
 import { Router, Route, Switch,Link } from 'dva/router';
 import EventTable from '../components/event/event'
-
+import { routerRedux } from 'dva/router';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -10,19 +10,11 @@ const SubMenu = Menu.SubMenu;
 
 class MainPage extends React.Component {
 
-
-
   constructor(props){
     super(props)
+    this.props.history.push("/main/eventReporting")
     console.log(this.props)
   }
-
-  getChildren = (props) => {
-    console.log(1111)
-    console.log( this.props.children);
-    /*   return this.props.children();*/
-  }
-
 
 
   state = {
@@ -35,6 +27,13 @@ class MainPage extends React.Component {
   }
 
   render() {
+    const showReportingEvent = () => {
+      this.props.history.push("/main/eventReporting")
+    }
+    const showReportedEvent = () => {
+      this.props.history.push("/main/eventReported")
+    }
+
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider
@@ -48,8 +47,8 @@ class MainPage extends React.Component {
               key="sub2"
               title={<span><Icon type="team" /><span>事件上报</span></span>}
             >
-              <Menu.Item key="6">事件上报</Menu.Item>
-              <Menu.Item key="8">已报事件</Menu.Item>
+              <Menu.Item key="6" onClick={showReportingEvent}>事件上报</Menu.Item>
+              <Menu.Item key="8" onClick={showReportedEvent }>已报事件</Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
@@ -64,7 +63,7 @@ class MainPage extends React.Component {
               <Route path="/main/eventReporting"  component={() => <EventTable/>}/>
               <Route path="/main/eventReported"  component={() => <h1>已报事件</h1>}/>
 
-         {/*   <EventTable/>*/}
+              {/*   <EventTable/>*/}
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
