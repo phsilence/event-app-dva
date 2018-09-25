@@ -22,10 +22,11 @@ function RouterConfig({ history,app }) {
 
   return (
     <Router history={history}>
-      <Switch>
+      <switch>
         <Route path="/main"  component={getDynamicComponent('./models/event','./routes/mainPage')} />
+        {/*<Route path="/main/test"  component={getDynamicComponent('./models/app','./routes/App')} />*/}
         <Redirect  to="/main" />
-      </Switch>
+      </switch>
     </Router>
   );
 }

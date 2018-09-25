@@ -2,6 +2,7 @@ import {connect} from 'dva'
 import React from 'react';
 import { Router, Route, Switch,Link } from 'dva/router';
 import EventTable from '../components/event/event'
+import App from './App'
 import { routerRedux } from 'dva/router';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
@@ -12,7 +13,7 @@ class MainPage extends React.Component {
 
   constructor(props){
     super(props)
-    this.props.history.push("/main/eventReporting")
+    this.props.history.push("/main/test")
     console.log(this.props)
   }
 
@@ -28,7 +29,7 @@ class MainPage extends React.Component {
 
   render() {
     const showReportingEvent = () => {
-      this.props.history.push("/main/eventReporting")
+      this.props.history.push("/main/test")
     }
     const showReportedEvent = () => {
       this.props.history.push("/main/eventReported")
@@ -60,7 +61,8 @@ class MainPage extends React.Component {
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              <Route path="/main/eventReporting"  component={() => <EventTable/>}/>
+              {/*<Route path="/main/eventReporting"  component={() => <EventTable/>}/>*/}
+              <Route path="/main/test"  component={() => <App/>}/>
               <Route path="/main/eventReported"  component={() => <h1>已报事件</h1>}/>
 
               {/*   <EventTable/>*/}

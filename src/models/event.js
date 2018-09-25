@@ -12,10 +12,10 @@ const Event={
 
     //同步方法
     reducers:{
-        save(state,{payload:{data:list}}){
+        save(state,action){
             return{
                 ...state,
-                list
+              ...action.payload
             }
         }
     },
@@ -23,7 +23,7 @@ const Event={
         * query(a={},{call,put}){
             const {data} = yield call(request,'/api/events',{method:'GET'});
             //异步调用成功后同步更新本地state树
-            yield put({type:'save',payload:{data}});
+            yield put({type:'save',payload:{list: data,}});
         },
         * create({payload:{event}},{call,put}){
           yield call(addEvent,event);

@@ -3,7 +3,7 @@ import {connect} from 'dva'
 import EventModal from './eventmodal'
 import React, {  Component } from 'react'
 import styles from './event.less'
-class EventTable extends  Component {
+class EventList extends  Component {
 
   state = {
     selectedRowKeys: [], // Check here to configure the default column
@@ -17,6 +17,7 @@ class EventTable extends  Component {
 
     render(){
       const {list,dispatch} = this.props;
+     console.log(this.props.dataSource)
       const { loading, selectedRowKeys } = this.state;
       const rowSelection = {
         selectedRowKeys,
@@ -90,7 +91,7 @@ class EventTable extends  Component {
 
             <Table
                 columns={columns}
-                dataSource={list}
+                dataSource={this.props.dataSource.data}
                 rowSelection={rowSelection}
                 rowKey={ t=>t.id}
                 pagination={true}
@@ -102,9 +103,4 @@ class EventTable extends  Component {
 }
 
 
-export default connect(({event}) => {
-    console.log(event);
-    return{
-        list: event.list
-    }
-})(EventTable)
+export default EventList

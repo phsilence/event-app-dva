@@ -22,6 +22,7 @@ let db=Mock.mock({
     }]
 })
 export function getList(req,res) {
+  console.log(db);
   res.status(200).json(db);
 }
 
