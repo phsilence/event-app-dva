@@ -1,0 +1,80 @@
+import {connect} from 'dva'
+import React from 'react';
+import { Router, Route, Switch,Link } from 'dva/router';
+import EventTable from '../components/event/event'
+
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+const { Header, Content, Footer, Sider } = Layout;
+
+const SubMenu = Menu.SubMenu;
+
+class MainPage extends React.Component {
+
+
+
+  constructor(props){
+    super(props)
+    console.log(this.props)
+  }
+
+  getChildren = (props) => {
+    console.log(1111)
+    console.log( this.props.children);
+    /*   return this.props.children();*/
+  }
+
+
+
+  state = {
+    collapsed: false,
+  };
+
+  onCollapse = (collapsed) => {
+    console.log(collapsed);
+    this.setState({ collapsed });
+  }
+
+  render() {
+    return (
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider
+          collapsible
+          collapsed={this.state.collapsed}
+          onCollapse={this.onCollapse}
+        >
+          <div className="logo" />
+          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+            <SubMenu
+              key="sub2"
+              title={<span><Icon type="team" /><span>事件上报</span></span>}
+            >
+              <Menu.Item key="6">事件上报</Menu.Item>
+              <Menu.Item key="8">已报事件</Menu.Item>
+            </SubMenu>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Header style={{ background: '#fff', padding: 0 }} />
+          <Content style={{ margin: '0 16px' }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>User</Breadcrumb.Item>
+              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            </Breadcrumb>
+            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+              <Route path="/main/eventReporting"  component={() => <EventTable/>}/>
+              <Route path="/main/eventReported"  component={() => <h1>已报事件</h1>}/>
+
+         {/*   <EventTable/>*/}
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            Ant Design ©2018 Created by Ant UED
+          </Footer>
+        </Layout>
+      </Layout>
+    );
+  }
+}
+
+
+export default connect()(MainPage)
