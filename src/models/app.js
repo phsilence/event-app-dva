@@ -111,6 +111,7 @@ export default {
       const id = yield select(({ reportingEvent }) => reportingEvent.currentItem.id)
       const newInsInfo = { ...payload, id }
       const data = yield call(update, newInsInfo)
+      //yield put({ type: 'hideModal',payload: { currentItem: { }} })
       if (data ) {
         const dataList = yield call(getReportingEvent, {currentPage: payload.currentPage, pageSize: payload.pageSize})
         yield put({

@@ -40,11 +40,13 @@ class EventModal extends Component{
         const save = () => {
             this.props.form.validateFields((err,val) => {
               let data = type !== 'create' ?  Object.assign(val,{id : item.id},{number : item.number}) : val;
-              onOk(val);
+              onOk(data);
             })
         }
 
-
+        const restFrom =() => {
+          resetFields()
+        }
         return(
             <div>
                 {/*<span onClick={ showModal}>*/}
@@ -53,6 +55,7 @@ class EventModal extends Component{
                 <Modal
                   {...modalOpts}
                   onOk={save}
+                  afterClose={restFrom}
                 >
                     <Form>
                         <Form.Item label="事件标题">
