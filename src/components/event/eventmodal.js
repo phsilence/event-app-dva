@@ -4,15 +4,27 @@ import { Modal,Form,Input} from 'antd'
 class EventModal extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            visible:false
-        }
     }
 
     render(){
-        const { children, form:{getFieldDecorator},record,ok} = this.props;
-
-
+        const { item,visible, onCancel,handleOk,type,onOk,form: {
+          getFieldDecorator,
+          validateFields,
+          getFieldsValue,
+          setFieldsValue,
+          resetFields
+        },} = this.props;
+      const modalOpts = {
+        title: item.name ? item.name : '新增',
+        visible,
+        width: 800,
+        onCancel,
+        wrapClassName: 'vertical-center-modal',
+        className: 'test'
+      }
+      console.log('模态框')
+      console.log(modalOpts)
+/*
         const showModal = () => {
             this.setState({
                 visible:true
@@ -22,59 +34,57 @@ class EventModal extends Component{
             this.setState({
                 visible:false
             })
-        };
+        };*/
 
         const save = () => {
             this.props.form.validateFields((err,val) => {
-                    ok(val);
-                    hideModal();
+              onOk(val);
             })
         }
 
+
         return(
             <div>
-                <span onClick={ showModal}>
-                    {children}
-                </span>
+                {/*<span onClick={ showModal}>*/}
+                    {/*{children}*/}
+                {/*</span>*/}
                 <Modal
-                    title="事件上报"
-                    visible={this.state.visible}
-                    onCancel={hideModal}
-                    onOk={save}
+                  {...modalOpts}
+                  onOk={save}
                 >
                     <Form>
                         <Form.Item label="事件标题">
                             {
                                 getFieldDecorator('eventTitle',{
-                                    initiaValue:record.name
+                                    initiaValue:item.eventTitle
                                 })(<Input/>)
                             }
                         </Form.Item>
                         <Form.Item label="位置说明">
                             {
                                 getFieldDecorator('eventSite',{
-                                    initiaValue:record.name
+                                    initiaValue:item.eventSite
                                 })(<Input/>)
                             }
                         </Form.Item>
                         <Form.Item label="来源渠道">
                             {
                                 getFieldDecorator('eventSoure',{
-                                    initiaValue:record.name
+                                    initiaValue:item.eventSoure
                                 })(<Input/>)
                             }
                         </Form.Item>
                         <Form.Item label="事件类型">
                             {
                                 getFieldDecorator('eventType',{
-                                    initiaValue:record.name
+                                    initiaValue:item.eventType
                                 })(<Input/>)
                             }
                         </Form.Item>
                         <Form.Item label="处置期限">
                             {
                                 getFieldDecorator('eventDeadline',{
-                                    initiaValue:record.name
+                                    initiaValue:item.eventDeadline
                                 })(<Input/>)
                             }
                         </Form.Item>
@@ -84,7 +94,7 @@ class EventModal extends Component{
             </div>
         )
 
-        
+
     }
 }
 

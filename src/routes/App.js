@@ -21,6 +21,9 @@ function App({app,location,dispatch,reportingEvent}) {
     dataSource: list,
     onOk (data) {
       const value = data
+
+      console.log('模态框值')
+      console.log(value)
       value.currentPage = pagination.currentPage
       value.pageSize = pagination.pageSize
       dispatch({
@@ -28,6 +31,8 @@ function App({app,location,dispatch,reportingEvent}) {
         payload: value
       });
     },
+    //确认弹框
+
     onCancel () {
       dispatch({
         type: 'reportingEvent/hideModal'
@@ -130,10 +135,6 @@ function App({app,location,dispatch,reportingEvent}) {
         }
       });
     },
-    //确认弹框
-    handleOk(item) {
-
-    },
     handleCancel() {
 
     }
@@ -149,7 +150,7 @@ function App({app,location,dispatch,reportingEvent}) {
 }
 
 App.propTypes = {
-  insInfo: PropTypes.object,
+  reportingEvent: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func
 }

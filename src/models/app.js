@@ -73,6 +73,10 @@ export default {
         })
       }
     },
+    *loadModalTree ({ payload }, { call, put }) {
+      yield put({type: 'showModal',payload: {modalType: payload.modalType, currentItem: payload.currentItem}});
+      yield put({ type: 'showLoading' });
+    },
     *create ({ payload }, { call, put }) {
       //隐藏弹窗
       yield put({ type: 'hideModal' });
@@ -81,7 +85,7 @@ export default {
       //返回数据常量
       delete payload.currentPage
       delete payload.pageSize
-      const data = yield call(addEvent, payload);
+      const  data = yield call(addEvent, payload);
       if (data) {
         const dataList = yield call(getReportingEvent, {currentPage: 1,pageSize: 10})
         yield put({
