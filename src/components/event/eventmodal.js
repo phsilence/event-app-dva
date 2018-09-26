@@ -15,15 +15,16 @@ class EventModal extends Component{
           resetFields
         },} = this.props;
       const modalOpts = {
-        title: item.name ? item.name : '新增',
+        title: type !== 'create' ?  '编辑' : '新增',
         visible,
         width: 800,
         onCancel,
         wrapClassName: 'vertical-center-modal',
         className: 'test'
       }
-      console.log('模态框')
-      console.log(modalOpts)
+      console.log('编辑')
+      console.log(item.eventTitle)
+      console.log('编辑ss')
 /*
         const showModal = () => {
             this.setState({
@@ -38,6 +39,7 @@ class EventModal extends Component{
 
         const save = () => {
             this.props.form.validateFields((err,val) => {
+              let data = type !== 'create' ?  val.assign() : val;
               onOk(val);
             })
         }
@@ -56,35 +58,35 @@ class EventModal extends Component{
                         <Form.Item label="事件标题">
                             {
                                 getFieldDecorator('eventTitle',{
-                                    initiaValue:item.eventTitle
+                                  initialValue:item.eventTitle
                                 })(<Input/>)
                             }
                         </Form.Item>
                         <Form.Item label="位置说明">
                             {
                                 getFieldDecorator('eventSite',{
-                                    initiaValue:item.eventSite
+                                  initialValue:item.eventSite
                                 })(<Input/>)
                             }
                         </Form.Item>
                         <Form.Item label="来源渠道">
                             {
                                 getFieldDecorator('eventSoure',{
-                                    initiaValue:item.eventSoure
+                                  initialValue:item.eventSoure
                                 })(<Input/>)
                             }
                         </Form.Item>
                         <Form.Item label="事件类型">
                             {
                                 getFieldDecorator('eventType',{
-                                    initiaValue:item.eventType
+                                  initialValue:item.eventType
                                 })(<Input/>)
                             }
                         </Form.Item>
                         <Form.Item label="处置期限">
                             {
                                 getFieldDecorator('eventDeadline',{
-                                    initiaValue:item.eventDeadline
+                                  initialValue:item.eventDeadline
                                 })(<Input/>)
                             }
                         </Form.Item>

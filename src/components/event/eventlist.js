@@ -152,7 +152,7 @@ EventList.propTypes = {
   onClickCheck: PropTypes.func,
   onAdd: PropTypes.func,
   onBatchDelete: PropTypes.func,
-  dataSource: PropTypes.array,
+  dataSource: PropTypes.object,
   loading: PropTypes.any,
   pagination: PropTypes.any
 }
