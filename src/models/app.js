@@ -55,6 +55,7 @@ export default {
     },
     *delete ({ payload }, { call, put }) {
       yield put({ type: 'showLoading' });
+      console.log(`删除 ${payload}`);
       const data = yield call(remove, { id: payload });
       if (data) {
         const dataList = yield call(getReportingEvent, {currentPage: 1, pageSize: 10});

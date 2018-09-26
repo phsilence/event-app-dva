@@ -116,7 +116,7 @@ function App({app,location,dispatch,reportingEvent}) {
         }
       });
     },
-    //弹窗查看用户详情
+    //弹窗查看详情
     onClickCheck (item) {
       dispatch({
         type: 'reportingEvent/showModal',

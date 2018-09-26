@@ -46,7 +46,7 @@ class EventList extends Component {
       },
       {
         title: '事件类型',
-        dataIndex: 'event_type'
+        dataIndex: 'eventType'
       },
       {
         title: '处置期限',

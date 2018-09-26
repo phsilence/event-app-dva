@@ -17,7 +17,7 @@ let db=Mock.mock({
         'eventTitle':'@eventTitles',
         'eventSite':'@eventSites',
         'eventSoure':'@eventSoures',
-        'event_type':'@eventTypes',
+        'eventType':'@eventTypes',
         'eventDeadline':'@eventDeadlines',
     }]
 })
@@ -34,4 +34,12 @@ export function addEvent(req,res) {
   db.data.push(e);
 
   res.status(200).json(e);
+}
+
+export function removeEvent(req,res) {
+  let t=req.body;
+  console.log(`后台删除${t.id}`)
+  let data = db.data.filter( e => e.id !== t.id )
+  db.data = data;
+  res.status(200).json(db);
 }
