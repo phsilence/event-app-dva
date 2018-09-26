@@ -43,3 +43,13 @@ export function removeEvent(req,res) {
   db.data = data;
   res.status(200).json(db);
 }
+
+export function updateEvent(req,res) {
+  let event=req.body;
+  for (let i=0 ; i < db.data.length ;i++){
+    if(db.data[i].id === event.id){
+      db.data[i] = event
+    }
+  }
+  res.status(200).json(event);
+}

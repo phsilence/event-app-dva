@@ -23,7 +23,7 @@ class EventModal extends Component{
         className: 'test'
       }
       console.log('编辑')
-      console.log(item.eventTitle)
+      console.log(item)
       console.log('编辑ss')
 /*
         const showModal = () => {
@@ -39,7 +39,7 @@ class EventModal extends Component{
 
         const save = () => {
             this.props.form.validateFields((err,val) => {
-              let data = type !== 'create' ?  val.assign() : val;
+              let data = type !== 'create' ?  Object.assign(val,{id : item.id},{number : item.number}) : val;
               onOk(val);
             })
         }
