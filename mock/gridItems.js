@@ -25,7 +25,7 @@ let gridItemsData = Mock.mock({
 
 let database = gridItemsData.data;
 
-module.exports = {
+export default {
     'POST /api/gridItems'(req, res) {
         const { query } = req;
         let { pageSize, page, ...other } = query;

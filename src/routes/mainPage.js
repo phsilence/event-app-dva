@@ -3,6 +3,7 @@ import React from 'react';
 import { Router, Route, Switch,Link } from 'dva/router';
 import EventTable from '../components/event/event'
 import App from './App'
+import EventReported from './EventReported'
 import { routerRedux } from 'dva/router';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
@@ -63,7 +64,7 @@ class MainPage extends React.Component {
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
               {/*<Route path="/main/eventReporting"  component={() => <EventTable/>}/>*/}
               <Route path="/main/test"  component={() => <App/>}/>
-              <Route path="/main/eventReported"  component={() => <h1>已报事件</h1>}/>
+              <Route path="/main/eventReported"  component={() => <EventReported/>}/>
 
               {/*   <EventTable/>*/}
             </div>
