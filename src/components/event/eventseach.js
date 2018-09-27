@@ -39,11 +39,11 @@ class EventSearch extends Component{
     return (
       <div style={{marginBottom: 20}}>
         <div>
-          <Form inline>
+          <Form layout="inline">
             <Form.Item hasFeedback label='事件标题'>
               {getFieldDecorator('keyword', {
                 initialValue: keyword || ''
-              })(<Input size="large" style={{width:200}} />)}
+              })(<Input size="middle" style={{width:200}} />)}
             </Form.Item>
             <Button type='primary' icon="search" onClick={handleSubmit} style={{marginRight:10}}>搜索</Button>
             <Button type='primary' onClick={refreshTabel} style={{backgroundColor: '#f5f6f7',border:'1px solid #d9d9d9',color:'#565656'}}>重置</Button>
