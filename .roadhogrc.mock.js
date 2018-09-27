@@ -1,5 +1,6 @@
 import {getList,addEvent,removeEvent,updateEvent,batchDelete} from './mock/event2';
 import gridItems from './mock/gridItems';
+import {getReportedList} from './mock/reportedevent';
 
 export default {
   /* 入格事项相关接口 */
@@ -9,4 +10,5 @@ export default {
   'POST /api/remove': (req, res) => removeEvent(req, res),
   'POST /api/update': (req, res) => updateEvent(req, res),
   'POST /api/batchDelete': (req, res) => batchDelete(req, res),
+  'POST /api/reportedevents' : (req,res) => getReportedList(req,res),
 };
