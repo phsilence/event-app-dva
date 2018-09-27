@@ -36,7 +36,9 @@ export default {
   effects : {
     *query({payload},{call,put}){
       yield put({type:'showLoading'});
+      console.log(189)
         const data = yield call(getReportingEvent,payload);
+      console.log(data)
         if(data){
           yield put({
             type: 'querySuccess',

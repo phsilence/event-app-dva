@@ -131,7 +131,7 @@ class EventList extends Component {
         </div>
         <Table
           columns={this.columns}
-          dataSource={this.props.dataSource.data}
+          dataSource={this.props.dataSource}
           rowSelection={rowSelection}
           rowKey={record => record.id}
           pagination={true}

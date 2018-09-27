@@ -1,3 +1,4 @@
+import assign from 'core-js/library/fn/object/assign'
 const Mock=require('mockjs');
 var Random = Mock.Random;
 Random.extend({
@@ -19,11 +20,16 @@ let db=Mock.mock({
         'eventSoure':'@eventSoures',
         'eventType':'@eventTypes',
         'eventDeadline':'@eventDeadlines',
+        'isUsed' : '',
     }]
 })
 export function getList(req,res) {
- // console.log(db);
-  res.status(200).json(db);
+  let tem = assign({},db)
+  if(req.body.name){
+    let data = db.data.filter( e => e.eventTitle.indexOf(req.body.name) !== -1)
+    tem.data = data;
+  }
+  res.status(200).json(tem);
 }
 
 export function addEvent(req,res) {
