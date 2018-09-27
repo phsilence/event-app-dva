@@ -9,8 +9,6 @@ class EventList extends Component {
 
   constructor(props) {
     super(props);
-    console.log(2222)
-    console.log(props)
     this.state = {
       //选择的复选框
       selectedRowKeys: []
@@ -82,10 +80,6 @@ class EventList extends Component {
     console.log(6666)
     onAdd()
   }
-  //删除用户
-  onClickDelete = (record) => {
-    this.props.onDeleteItem(record.id);
-  }
 
   onBatchDelete = (selectedRowKeys) => {
     let {onBatchDelete} = this.props
@@ -93,8 +87,11 @@ class EventList extends Component {
     if (arr.length == 0) {
       this.openNotificationWithIcon('warning', '请选择至少一个需要删除的机构')
     } else {
-      var ids = arr.join(',');
+      let ids = arr;
       onBatchDelete(ids)
+      console.log('批量删除')
+      console.log(ids)
+      console.log('批量删除。。。')
     }
   }
 

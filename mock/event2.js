@@ -22,7 +22,7 @@ let db=Mock.mock({
     }]
 })
 export function getList(req,res) {
-  console.log(db);
+ // console.log(db);
   res.status(200).json(db);
 }
 
@@ -43,6 +43,17 @@ export function removeEvent(req,res) {
   db.data = data;
   res.status(200).json(db);
 }
+
+export function batchDelete(req,res) {
+  let t=req.body;
+  console.log('后台批量删除')
+  console.log(t.ids)
+  let data = db.data.filter( e => !t.ids.find( n => n === e.id))
+  db.data = data;
+  //console.log(data)
+  res.status(200).json(db);
+}
+
 
 export function updateEvent(req,res) {
   let event=req.body;

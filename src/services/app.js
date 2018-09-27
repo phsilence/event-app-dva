@@ -21,6 +21,14 @@ export function remove(params) {
   })
 }
 
+export function batchDelete(params) {
+  return request('/api/batchDelete',{
+    body:JSON.stringify(params),
+    method:'POST'
+  })
+}
+
+
 export function update(params) {
   return request('/api/update',{
     body:JSON.stringify(params),

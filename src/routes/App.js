@@ -74,7 +74,7 @@ function App({app,location,dispatch,reportingEvent}) {
      */
     onBatchDelete(item){
       dispatch({
-        type: 'reportingEvent/delete',
+        type: 'reportingEvent/batchDelete',
         payload: item
       })
 

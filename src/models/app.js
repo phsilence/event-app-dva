@@ -1,4 +1,4 @@
-import {getReportingEvent,addEvent,remove,update} from '../services/app'
+import {getReportingEvent,addEvent,remove,update,batchDelete} from '../services/app'
 import {message} from 'antd'
 
 const param = {}
@@ -57,6 +57,27 @@ export default {
       yield put({ type: 'showLoading' });
       console.log(`删除 ${payload}`);
       const data = yield call(remove, { id: payload });
+      if (data) {
+        const dataList = yield call(getReportingEvent, {currentPage: 1, pageSize: 10});
+        yield put({
+          type: 'querySuccess',
+          payload: {
+            list: dataList,
+          }
+        });
+        message.success('查询成功')
+      }else{
+        yield put({ type: 'queryFaild',
+          payload: {
+            msg: '查询失败'
+          }
+        })
+      }
+    },
+    *batchDelete ({ payload }, { call, put }) {
+      yield put({ type: 'showLoading' });
+      console.log(`删除 ${payload}`);
+      const data = yield call(batchDelete, { ids: payload });
       if (data) {
         const dataList = yield call(getReportingEvent, {currentPage: 1, pageSize: 10});
         yield put({
