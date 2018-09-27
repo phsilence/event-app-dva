@@ -1,5 +1,6 @@
 import {getList,addEvent,removeEvent,updateEvent} from './mock/event2';
 import gridItems from './mock/gridItems';
+import assign from 'core-js/library/fn/object/assign'
 
 const gram1 = {
   'POST /api/events': (req, res) => getList(req, res),
@@ -8,4 +9,4 @@ const gram1 = {
   'POST /api/update': (req, res) => updateEvent(req, res),
 };
 
-export default Object.assign(gram1, gridItems);
+export default assign(gram1, gridItems);
