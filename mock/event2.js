@@ -2,7 +2,14 @@ import assign from 'core-js/library/fn/object/assign'
 const Mock=require('mockjs');
 var Random = Mock.Random;
 Random.extend({
-    eventTypes: ['新增事件', '更新事件', '删除事件'],
+    eventTypes: [{'dataType':'sbss','data':'门派采集'},
+      {'dataType':'sbss','data':'有路无名整治'},
+      {'dataType':'sbss','data':'本市户籍人户分离管理'},
+      {'dataType':'sbss','data':'有路无名整治'},
+      {'dataType':'sqwg','data':'信息采集'},
+      {'dataType':'sqwg','data':'网格事件'},
+      {'dataType':'sqwg','data':'城市部件'},
+      ],
     eventTitles:['偷井盖了', '掉井盖里了', '找回井盖了'],
     eventSites:['南湖', '关山', '光谷'],
     eventSoures:['区级下派', '群众上报'],
