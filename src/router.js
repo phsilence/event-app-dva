@@ -25,7 +25,7 @@ function RouterConfig({ history,app }) {
       <Switch>
         <Route path="/main" component={getDynamicComponent('./models/event','./routes/mainPage')} />
         <Route path="/gridItemManage"  component={getDynamicComponent('./models/gridItemManage/gridItemManage','./routes/gridItemManage/GridItemManage')} />
-        <Redirect  to="/main" />
+        <Redirect to="/main" />
       </Switch>
     </Router>
   );

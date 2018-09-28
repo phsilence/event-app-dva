@@ -27,7 +27,6 @@ let db=Mock.mock({
         'eventSoure':'@eventSoures',
         'eventType':'@eventTypes',
         'eventDeadline':'@eventDeadlines',
-        'isUsed' : '',
     }]
 })
 export function getList(req,res) {

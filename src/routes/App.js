@@ -21,10 +21,10 @@ class App extends React.Component {
 
     const { loading, list, pagination, currentItem, modalVisible, modalType,modalTypeVisible } = reportingEvent;
     //处理返回的数据中是否启用状态的转换
-    const newList = list.data
+/*    const newList = list.data
     newList.map((item,index) => {
       (newList[index].isUsed == 'ENABLE' || newList[index].isUsed == '是') ? newList[index].isUsed = '是' : newList[index].isUsed = '否'
-    })
+    })*/
     /**
      * 弹窗组件
      * @type {{item: {}, type: *, visible: *, onOk(*=): void, onCancel(): void}}
@@ -34,7 +34,7 @@ class App extends React.Component {
       type: modalType,
       visible: modalVisible,
       record:{},
-      dataSource: newList,
+      dataSource: list.data,
       onOk (data) {
         const value = data
 
@@ -67,7 +67,7 @@ class App extends React.Component {
       // type: modalType,
       visible: modalTypeVisible,
       record:{},
-      dataSource: newList,
+      dataSource: list.data,
       onOk (data) {
         const value = data
 
@@ -94,7 +94,7 @@ class App extends React.Component {
      * @type {{dataSource: *, loading: *, pagination: *, onPageChange(*, *, *): void, onDeleteItem(*=): void, onEditItem(*=): void}}
      */
     const eventListProps = {
-      dataSource: newList,
+      dataSource: list.data,
       loading,
       pagination: pagination,
       onPageChange (pagination, filters, sorter) {

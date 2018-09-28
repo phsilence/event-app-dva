@@ -14,8 +14,9 @@ class MainPage extends React.Component {
 
   constructor(props){
     super(props)
-    this.props.history.push("/main/test")
     console.log(this.props)
+    this.props.history.push("/main/test")
+
   }
 
 
