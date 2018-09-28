@@ -7,7 +7,7 @@ class EventModal extends Component{
     }
 
     render(){
-        const { item,visible, onCancel,handleOk,type,onOk,form: {
+        const { item,visible, onCancel,openTypeModal,type,onOk,form: {
           getFieldDecorator,
           validateFields,
           getFieldsValue,
@@ -23,7 +23,7 @@ class EventModal extends Component{
         className: 'test'
       }
       console.log('编辑')
-      console.log(item)
+      console.log(openTypeModal)
       console.log('编辑ss')
 /*
         const showModal = () => {
@@ -48,6 +48,11 @@ class EventModal extends Component{
           resetFields()
         }
 
+        const openType = () => {
+          openTypeModal()
+        }
+
+
       const formItemLayout = {
         labelCol: { span: 4 },
         wrapperCol: { span: 14 },
@@ -65,13 +70,13 @@ class EventModal extends Component{
                   <Form layout="horizontal">
                   <Collapse defaultActiveKey={['1','2','3','4']}>
                     <Collapse.Panel header="事件信息" key="1">
-                        <Form.Item label="事件类型"    {...formItemLayout}>
+                        <Form.Item label="*事件类型"    {...formItemLayout}>
                           {
                             getFieldDecorator('eventType',{
                               initialValue:item.eventType ? item.eventType.dataType : {}
-                            })( <Radio.Group  defaultValue={'sbss'}>
-                              <Radio value={'sbss'}>四标四实事项</Radio>
-                              <Radio value={'sqwg'}>社区网格事项</Radio>
+                            })( <Radio.Group   defaultValue={'sbss'}>
+                              <Radio  onClick={openType} value={'sbss'}>四标四实事项</Radio>
+                              <Radio  onClick={openType}  value={'sqwg'}>社区网格事项</Radio>
                             </Radio.Group>)
                           }
                         </Form.Item>

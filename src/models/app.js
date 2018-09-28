@@ -17,6 +17,8 @@ export default {
     currentItem: {},
     modalVisible: false,
     modalType: 'create',
+    //modalTypeState
+    modalTypeVisible:false,
   },
   subscriptions: {
     setup({dispatch,history}){
@@ -101,6 +103,10 @@ export default {
       yield put({type: 'showModal',payload: {modalType: payload.modalType, currentItem: payload.currentItem}});
       yield put({ type: 'showLoading' });
     },
+    *loadTypeModal ({ payload }, { call, put }) {
+      yield put({type: 'showTypeModal'});
+      yield put({ type: 'showLoading' });
+    },
     *create ({ payload }, { call, put }) {
       //隐藏弹窗
       yield put({ type: 'hideModal' });
@@ -172,8 +178,14 @@ export default {
     showModal (state, action) {
       return { ...state, ...action.payload, modalVisible: true }
     },
+    showTypeModal (state, action) {
+      return { ...state, ...action.payload,modalTypeVisible: true }
+    },
     hideModal (state) {
       return { ...state, modalVisible: false }
+    },
+    hideTypeModal (state) {
+      return { ...state, modalTypeVisible: false }
     },
   }
 }

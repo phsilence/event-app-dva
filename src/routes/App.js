@@ -6,6 +6,7 @@ import {connect} from 'dva'
 import EventList from '../components/event/eventlist'
 import EventModal from '../components/event/eventmodal'
 import EventSearch from '../components/event/eventseach'
+import EventTypeModal from '../components/event/eventTypeModal'
 
 class App extends React.Component {
 
@@ -18,7 +19,7 @@ class App extends React.Component {
     const {dispatch,reportingEvent } = this.props;
 
 
-    const { loading, list, pagination, currentItem, modalVisible, modalType } = reportingEvent;
+    const { loading, list, pagination, currentItem, modalVisible, modalType,modalTypeVisible } = reportingEvent;
     //处理返回的数据中是否启用状态的转换
     const newList = list.data
     newList.map((item,index) => {
@@ -51,6 +52,39 @@ class App extends React.Component {
       onCancel () {
         dispatch({
           type: 'reportingEvent/hideModal'
+        });
+      },
+      openTypeModal () {
+        dispatch({
+          type: 'reportingEvent/loadTypeModal'
+        });
+      },
+    };
+
+
+    const eventTypeModalProps = {
+      // item: modalType === 'create' ? {} : currentItem,
+      // type: modalType,
+      visible: modalTypeVisible,
+      record:{},
+      dataSource: newList,
+      onOk (data) {
+        const value = data
+
+        console.log('模态框值')
+        console.log(value)
+        value.currentPage = pagination.currentPage
+        value.pageSize = pagination.pageSize
+        dispatch({
+          type: `reportingEvent/${modalType}`,
+          payload: value
+        });
+      },
+      //确认弹框
+
+      onCancel () {
+        dispatch({
+          type: 'reportingEvent/hideTypeModal'
         });
       },
     };
@@ -183,6 +217,7 @@ class App extends React.Component {
           <EventSearch {... eventSearchProps }/>
           <EventList {...eventListProps} />
           <EventModal {...eventModalProps} />
+          <EventTypeModal {...eventTypeModalProps}/>
         </div>
       );
   }
