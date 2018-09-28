@@ -5,6 +5,7 @@ export default {
     namespace: 'gridItemManage',
     state: {
         list: [],
+        activeItemState: 1,
     },
     subscriptions: {
         setup({ dispatch, history }){
@@ -15,6 +16,7 @@ export default {
                         payload: {
                             page: page,
                             pageSize: pageSize,
+                            itemType: 1,
                         },
                     });
                 }
@@ -23,12 +25,14 @@ export default {
     },
     effects: {
         *query({ payload }, { call, put }){
+            const { itemType } = payload;
             const { data } = yield call(getGridItemList, payload);
             if(data){
                 yield put({
                     type: 'querySuccess',
                     payload: {
                         list: data,
+                        activeItemState: itemType,
                     },
                 });
             }else{

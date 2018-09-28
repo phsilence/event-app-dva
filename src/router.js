@@ -22,11 +22,11 @@ function RouterConfig({ history,app }) {
 
   return (
     <Router history={history}>
-      <switch>
-        <Route path="/main"  component={getDynamicComponent('./models/event','./routes/mainPage')} />
-        {/*<Route path="/main/test"  component={getDynamicComponent('./models/app','./routes/App')} />*/}
+      <Switch>
+        <Route path="/main" component={getDynamicComponent('./models/event','./routes/mainPage')} />
+        <Route path="/gridItemManage"  component={getDynamicComponent('./models/gridItemManage/gridItemManage','./routes/gridItemManage/GridItemManage')} />
         <Redirect  to="/main" />
-      </switch>
+      </Switch>
     </Router>
   );
 }

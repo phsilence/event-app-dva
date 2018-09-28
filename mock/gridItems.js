@@ -18,7 +18,7 @@ let gridItemsData = Mock.mock({
             applicationName: '@applicationName',
             itemType: '@itemType',
             mainDepartment: '@mainDepartment',
-            createTime: Random.datetime('yyyy-MM-dd'),
+            createTime: '@date',
         },
     ],
 });
@@ -27,14 +27,14 @@ let database = gridItemsData.data;
 
 export default {
     'POST /api/gridItems'(req, res) {
-        const { query } = req;
-        let { pageSize, page, ...other } = query;
+        const { body } = req;
+        let { pageSize, page, ...params } = body;
         pageSize = pageSize || 10;
         page = page || 1;
 
         let newData = database;
-        for (let key in other) {
-            if ({}.hasOwnProperty.call(other, key)) {
+        for (let key in params) {
+            if ({}.hasOwnProperty.call(params, key)) {
                 newData = newData.filter((item) => {
                     if ({}.hasOwnProperty.call(item, key)) {
                         // if (key === 'address') {
@@ -49,7 +49,7 @@ export default {
                         //     }
                         //     return true
                         // }
-                        return String(item[key]).trim().indexOf(decodeURI(other[key]).trim()) > -1;
+                        return String(item[key]).trim().indexOf(decodeURI(params[key]).trim()) > -1;
                     }
                     return true;
                 });

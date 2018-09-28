@@ -5,8 +5,7 @@ import { Table,Button,Popconfirm } from 'antd';
 class List extends Component {
     constructor(props){
         super(props);
-
-        const {onDeleteItem} = this.props;
+        const { onDeleteItem } = this.props;
         this.columns = [
             {
                 title: '申请单位',
@@ -30,9 +29,12 @@ class List extends Component {
                 title: '操作',
                 render: (text,record) => {
                     return (
+                        <span>
                         <Popconfirm title="删除？" onConfirm={() => onDeleteItem(record.id)}>
                             <Button>Delete</Button>
                         </Popconfirm>
+                        <Button style={{display: this.props.activeItemState === '2' ? 'inline-block' : 'none',}}>Edit</Button>
+                        </span>
                     );
                 },
             }
