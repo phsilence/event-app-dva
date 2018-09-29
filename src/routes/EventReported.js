@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'dva'
 
 import EventReportedList from '../components/event/eventreportedlist'
+import EventSearch from '../components/event/eventseach'
 
 
 function EventReported({eventreported,location,dispatch,reportedEvent}) {
@@ -45,8 +46,31 @@ function EventReported({eventreported,location,dispatch,reportedEvent}) {
     },*/
   };
 
+  const eventSearchProps = {
+    /*    field,
+        keyword,*/
+    onSearch (fieldsValue) {
+      dispatch({
+        type: 'reportedEvent/query',
+        payload: {
+          name: fieldsValue.keyword
+        }
+      });
+
+    },
+    onReload () {
+      dispatch({
+        type: 'reportedEvent/query',
+        payload: {
+
+        }
+      });
+    }
+  };
+
   return (
     <div>
+      <EventSearch {... eventSearchProps }/>
       <EventReportedList {...eventListProps} />
     </div>
   );
