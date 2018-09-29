@@ -44,7 +44,8 @@ class EventReportedList extends  Component {
       },
       {
         title: '事件类型',
-        dataIndex: 'eventType'
+        dataIndex: 'eventType',
+        render: value => (value.data)
       },
       {
         title: '事发时间',
