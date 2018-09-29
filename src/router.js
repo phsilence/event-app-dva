@@ -23,9 +23,9 @@ function RouterConfig({ history,app }) {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/main" component={getDynamicComponent('./models/event','./routes/mainPage')} />
+        <Route path="/main"  component={getDynamicComponent('./models/event','./routes/mainPage')} />
         <Route path="/gridItemManage"  component={getDynamicComponent('./models/gridItemManage/gridItemManage','./routes/gridItemManage/GridItemManage')} />
-        <Redirect to="/main" />
+        {/*<Redirect to="/main" />*/}
       </Switch>
     </Router>
   );

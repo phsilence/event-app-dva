@@ -64,8 +64,8 @@ class MainPage extends React.Component {
             </Breadcrumb>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
               {/*<Route path="/main/eventReporting"  component={() => <EventTable/>}/>*/}
-              <Route path="/main/test"  component={() => <App/>}/>
-              <Route path="/main/eventReported"  component={() => <EventReported/>}/>
+              <Route path={`${this.props.match.path}/test`} component={() => <App/>}/>
+              <Route path={`${this.props.match.path}/eventReported`}  component={() => <EventReported/>}/>
 
               {/*   <EventTable/>*/}
             </div>

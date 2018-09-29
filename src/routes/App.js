@@ -7,11 +7,14 @@ import EventList from '../components/event/eventlist'
 import EventModal from '../components/event/eventmodal'
 import EventSearch from '../components/event/eventseach'
 import EventTypeModal from '../components/event/eventTypeModal'
+import { withRouter } from 'react-router'
 
 class App extends React.Component {
 
   constructor(props){
     super(props)
+    console.log(566)
+    console.log(props)
   }
 
   render(){
@@ -233,4 +236,4 @@ function mapStateToProps({ reportingEvent,app }) {
   return { reportingEvent,app };
 }
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
