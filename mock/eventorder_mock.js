@@ -1,3 +1,4 @@
+import assign from 'core-js/library/fn/object/assign'
 const Mock=require('mockjs');
 
 var Random = Mock.Random;
@@ -23,8 +24,37 @@ let db=Mock.mock({
     // 'eventDeadline':'@eventDeadlines',
   }]
 });
-module.exports={
-  [`POST /api/events/order`](req,res){
+
+export function getEventOrder(req,res){
+  const params = req.body;
+
+  //当前页
+  const current = params.pagination.current;
+  //每页数量
+  const pageSize = params.pagination.pageSize;
+
+  const total = db.data.length;
+
+  //开始索引
+  const begin = (current-1)*pageSize;
+  //结束索引
+  const end = ((begin+pageSize+1)>(total))?(total):(begin+pageSize);
+
+
+  const result={
+    data:db.data.slice(begin,end),
+    pagination:{
+      current:current,
+      hideOnSinglePage:false,
+      pageSize:pageSize,
+      total:total,
+    }
+  };
+  res.status(200).json(result);
+}
+
+/*module.exports={
+  [`POST /api/eventorder`](req,res){
 
     const params = req.body;
 
@@ -53,11 +83,11 @@ module.exports={
     res.status(200).json(result);
   },
 
-  /*[`POST /api/remove`](req,res) {
+  /!*[`POST /api/remove`](req,res) {
     let t=req.body;
     console.log(`后台删除${t.id}`)
     let data = db.data.filter( e => e.id !== t.id )
     db.data = data;
     res.status(200).json(db);
-  }*/
-};
+  }*!/
+};*/
