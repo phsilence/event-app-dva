@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch,Redirect } from 'dva/router';
 import dynamic from 'dva/dynamic'
-
+import EventOrder from './routes/EventOrder';
 
 function RouterConfig({ history,app }) {
 
@@ -25,6 +25,7 @@ function RouterConfig({ history,app }) {
       <Switch>
         <Route path="/main"  component={getDynamicComponent('./models/event','./routes/mainPage')} />
         <Route path="/gridItemManage"  component={getDynamicComponent('./models/gridItemManage/gridItemManage','./routes/gridItemManage/GridItemManage')} />
+        <Route path="/eventorder" exact component={EventOrder} />
         {/*<Redirect to="/main" />*/}
       </Switch>
     </Router>

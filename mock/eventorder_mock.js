@@ -24,7 +24,7 @@ let db=Mock.mock({
   }]
 });
 module.exports={
-  [`POST /api/events`](req,res){
+  [`POST /api/events/order`](req,res){
 
     const params = req.body;
 
