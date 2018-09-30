@@ -6,15 +6,11 @@ import {connect} from 'dva'
 import EventList from '../components/event/eventlist'
 import EventModal from '../components/event/eventmodal'
 import EventSearch from '../components/event/eventseach'
-import EventTypeModal from '../components/event/eventTypeModal'
-import { withRouter } from 'react-router'
 
 class App extends React.Component {
 
   constructor(props){
     super(props)
-    console.log(566)
-    console.log(props)
   }
 
   render(){
@@ -22,12 +18,12 @@ class App extends React.Component {
     const {dispatch,reportingEvent } = this.props;
 
 
-    const { loading, list, pagination, currentItem, modalVisible, modalType,modalTypeVisible } = reportingEvent;
+    const { loading, list, pagination, currentItem, modalVisible, modalType } = reportingEvent;
     //处理返回的数据中是否启用状态的转换
-/*    const newList = list.data
+    const newList = list.data;
     newList.map((item,index) => {
       (newList[index].isUsed == 'ENABLE' || newList[index].isUsed == '是') ? newList[index].isUsed = '是' : newList[index].isUsed = '否'
-    })*/
+    });
     /**
      * 弹窗组件
      * @type {{item: {}, type: *, visible: *, onOk(*=): void, onCancel(): void}}
@@ -37,7 +33,7 @@ class App extends React.Component {
       type: modalType,
       visible: modalVisible,
       record:{},
-      dataSource: list.data,
+      dataSource: newList,
       onOk (data) {
         const value = data
 
@@ -57,39 +53,6 @@ class App extends React.Component {
           type: 'reportingEvent/hideModal'
         });
       },
-      openTypeModal () {
-        dispatch({
-          type: 'reportingEvent/loadTypeModal'
-        });
-      },
-    };
-
-
-    const eventTypeModalProps = {
-      // item: modalType === 'create' ? {} : currentItem,
-      // type: modalType,
-      visible: modalTypeVisible,
-      record:{},
-      dataSource: list.data,
-      onOk (data) {
-        const value = data
-
-        console.log('模态框值')
-        console.log(value)
-        value.currentPage = pagination.currentPage
-        value.pageSize = pagination.pageSize
-        dispatch({
-          type: `reportingEvent/${modalType}`,
-          payload: value
-        });
-      },
-      //确认弹框
-
-      onCancel () {
-        dispatch({
-          type: 'reportingEvent/hideTypeModal'
-        });
-      },
     };
 
     /**
@@ -97,7 +60,7 @@ class App extends React.Component {
      * @type {{dataSource: *, loading: *, pagination: *, onPageChange(*, *, *): void, onDeleteItem(*=): void, onEditItem(*=): void}}
      */
     const eventListProps = {
-      dataSource: list.data,
+      dataSource: newList,
       loading,
       pagination: pagination,
       onPageChange (pagination, filters, sorter) {
@@ -220,7 +183,6 @@ class App extends React.Component {
           <EventSearch {... eventSearchProps }/>
           <EventList {...eventListProps} />
           <EventModal {...eventModalProps} />
-          <EventTypeModal {...eventTypeModalProps}/>
         </div>
       );
   }
@@ -236,4 +198,4 @@ function mapStateToProps({ reportingEvent,app }) {
   return { reportingEvent,app };
 }
 
-export default withRouter(connect(mapStateToProps)(App));
+export default connect(mapStateToProps)(App);

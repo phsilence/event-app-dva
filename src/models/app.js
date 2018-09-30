@@ -40,6 +40,8 @@ export default {
       yield put({type:'showLoading'});
       console.log(189)
         const data = yield call(getReportingEvent,payload);
+      console.log('model app query');
+      console.log(payload);
       console.log(data)
         if(data){
           yield put({

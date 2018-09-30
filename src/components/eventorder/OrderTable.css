@@ -1,0 +1,14 @@
+.test{
+  background-color: red;
+}
+/*pager*/
+.paging{background:#fbfbfb;border:1px solid #dfdfdf;/*border-top:0 none;*/clear:both;text-align:left;padding:5px 0px 5px 10px;}
+.paging_a{width:auto;height:30px;background:#fff;border:1px solid #d6d6d6;border-radius:2px; display:inline-block;text-align:center;line-height:30px; color:#6c6c6c;padding:0px 10px;margin-left:3px;margin-right:3px;}
+.paging_a:hover{ background:#eae9e9;}
+.paging_a.active{ background:#f5f5f5;}
+.paging_span{float:right;line-height:30px;margin-right:10px;}
+.paging_span_i{font-style:normal;}
+
+/*input*/
+.put{width:40px;color: #333;background-color: #fff;border-radius: 4px;border: 1px solid #e0dcdb; padding:3px 5px;font-size: 14px;
+}
